@@ -1,5 +1,6 @@
 # Generated output
 *.png
+!examples/**/*.png
 dungeon_rooms.md
 
 # Python
