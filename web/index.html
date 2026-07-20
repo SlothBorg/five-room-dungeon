@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Five Room Dungeon Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Five Room Dungeon Generator</h1>
+    <p class="subtitle">
+      Procedurally generates a dungeon made of interconnected five-node modules,
+      based on the 21 topologies from Steve Lawford's
+      <a href="https://enac.hal.science/hal-03097484/document" target="_blank" rel="noopener">
+        "Counting five-node subgraphs"</a>.
+      Runs entirely in your browser &mdash; the exact same Python code as the
+      <a href="https://github.com/SlothBorg/five-room-dungeon" target="_blank" rel="noopener">command-line tool</a>,
+      executed via <a href="https://pyodide.org" target="_blank" rel="noopener">Pyodide</a>.
+    </p>
+  </header>
+
+  <main>
+    <section class="controls">
+      <label for="count-input">Number of dungeon modules</label>
+      <input id="count-input" type="number" min="1" value="3" />
+      <button id="generate-btn" disabled>Generate</button>
+      <p id="status" role="status">Loading Python runtime&hellip; this can take a few seconds.</p>
+    </section>
+
+    <section class="legend">
+      <span class="legend-item"><span class="swatch" style="background:#e63946"></span>1: Entrance / Guardian</span>
+      <span class="legend-item"><span class="swatch" style="background:#f1a208"></span>2: Puzzle / Roleplay Challenge</span>
+      <span class="legend-item"><span class="swatch" style="background:#2a9d8f"></span>3: Trick / Setback</span>
+      <span class="legend-item"><span class="swatch" style="background:#457b9d"></span>4: Climax / Big Battle</span>
+      <span class="legend-item"><span class="swatch" style="background:#8338ec"></span>5: Reward / Revelation</span>
+    </section>
+
+    <section class="output">
+      <div class="image-wrap">
+        <img id="dungeon-image" alt="Generated dungeon graph" hidden />
+      </div>
+      <div class="table-wrap">
+        <div id="rooms-table"></div>
+      </div>
+    </section>
+
+    <section class="downloads">
+      <button id="download-png" disabled>Download PNG</button>
+      <button id="download-md" disabled>Download Markdown</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      <a href="https://github.com/SlothBorg/five-room-dungeon" target="_blank" rel="noopener">Source on GitHub</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

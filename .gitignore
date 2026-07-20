@@ -2,6 +2,7 @@
 *.png
 !examples/**/*.png
 dungeon_rooms.md
+web/main.py
 
 # Python
 __pycache__/

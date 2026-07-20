@@ -6,6 +6,10 @@ Based off the 21 topologically in Steve Lawford's "Counting five-node subgraphs"
 
 import random
 
+import matplotlib
+
+matplotlib.use("AGG")
+
 import matplotlib.pyplot as plt
 import networkx as nx
 from networkx.generators.atlas import graph_atlas_g
@@ -125,7 +129,8 @@ def print_summary(master, subgraphs):
     print()
 
 
-def write_room_markdown(master, out_path="dungeon_rooms.md"):
+def room_markdown(master):
+    """Render the rooms table as a Markdown string."""
     lines = [
         "# Dungeon Rooms",
         "",
@@ -137,17 +142,22 @@ def write_room_markdown(master, out_path="dungeon_rooms.md"):
         neighbors = sorted(master.neighbors(node))
         connections = ", ".join(f"Room {n}" for n in neighbors)
         lines.append(f"| Room {node} | {role} - {ROOM_ROLES[role]} | {connections} |")
+    return "\n".join(lines) + "\n"
+
+
+def write_room_markdown(master, out_path="dungeon_rooms.md"):
     with open(out_path, "w") as f:
-        f.write("\n".join(lines) + "\n")
+        f.write(room_markdown(master))
     print(f"Saved room list to {out_path}")
 
 
-def draw_dungeon(master, subgraphs, out_path="dungeon_graph.png"):
+def build_figure(master, subgraphs):
+    """Build (but do not save) the matplotlib figure for the dungeon graph."""
     pos = nx.spring_layout(master, seed=1)
     node_colors = [ROLE_COLORS[master.nodes[n]["role"]] for n in master.nodes]
     labels = {n: f"{n}\n[{master.nodes[n]['role']}]" for n in master.nodes}
 
-    plt.figure(figsize=(9, 7))
+    fig = plt.figure(figsize=(9, 7))
     nx.draw(
         master,
         pos,
@@ -175,7 +185,13 @@ def draw_dungeon(master, subgraphs, out_path="dungeon_graph.png"):
     plt.title(
         f"Five-room dungeon graph ({len(subgraphs)} modules, {master.number_of_nodes()} nodes)"
     )
-    plt.savefig(out_path, dpi=150, bbox_inches="tight")
+    return fig
+
+
+def draw_dungeon(master, subgraphs, out_path="dungeon_graph.png"):
+    fig = build_figure(master, subgraphs)
+    fig.savefig(out_path, dpi=150, bbox_inches="tight")
+    plt.close(fig)
     print(f"Saved graphical representation to {out_path}")
 
 

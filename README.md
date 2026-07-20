@@ -3,6 +3,8 @@
 A script to procedurally generates a dungeon made of interconnected
 five-node modules, each node being one of the five rooms in the the classic Five Room Dungeon.
 
+**Try it in the browser:** https://slothborg.github.io/five-room-dungeon/
+
 | Room | Meaning |
 |---|---------|
 | 1 | Entrance / Guardian |
@@ -46,3 +48,17 @@ pip install -r requirements.txt
 ```bash
 python3 main.py
 ```
+
+## Web version
+
+The `web/` directory contains a static site that runs `main.py` in-browser via [Pyodide](https://pyodide.org).
+Deployed automatically to GitHub Pages via [GitHub Actions](https://github.com/features/actions) `.github/workflows/pages.yml`.
+
+To run it locally:
+
+```bash
+cp main.py web/main.py
+python3 -m http.server --directory web 8000
+```
+
+Then open http://localhost:8000 in a browser.
