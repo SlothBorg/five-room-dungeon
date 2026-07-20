@@ -29,7 +29,11 @@ atlas, rather than trying to wrap my mind around the math in the paper, and uses
 4. Connects each subgraph, after the first, to 1–3 of the existing modules.
    1. The connection chance is weighted: 50% 1, 30% 2, 20% 1.
 5. Creates an image of the dungeon with lables, saved to `dungeon_graph.png`.
-6. Creates a markdown table listing every room, its role, and what rooms it connects to, saved to `dungeon_rooms.md`.
+6. Creates a Markdown table listing every room, its role, and what rooms it connects to, saved to `dungeon_rooms.md`.
+
+## Examples
+
+Examples of the output can be found in the `examples` directory.
 
 ## Installation
 
