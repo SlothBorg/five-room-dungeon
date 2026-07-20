@@ -1,7 +1,6 @@
 # Five Room Dungeon generator
 
-A script to procedurally generates a dungeon made of interconnected
-five-node modules, each node being one of the five rooms in the the classic Five Room Dungeon.
+A script to procedurally generate a dungeon made of interconnected  five-node modules, each node being one of the five rooms in the the classic Five Room Dungeon.
 
 **Try it in the browser:** https://slothborg.github.io/five-room-dungeon/
 
